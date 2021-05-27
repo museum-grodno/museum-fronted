@@ -23,7 +23,7 @@ export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
     HttpClientModule
   ],
   providers: [
-    {provide : API_BASE_URL, useValue: 'http://museum-api.loc/api/'},
+    {provide : API_BASE_URL, useValue: 'http://127.0.0.1/api/'},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptors,
