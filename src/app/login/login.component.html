@@ -1,0 +1,29 @@
+<div class="row login rounded-lg">
+    <form class="login-form">
+
+      <div class="form-group ">
+        <label for="login-form_login-input">Імя карыстальніка</label>
+        <input type="text"
+               class="form-control login-form_login-input"
+               id="login-form_login-input"
+               name="userId"
+               placeholder="Увядзіце імя карыстальніка"
+               [(ngModel)]="userId"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="login-form_password-input">Пароль</label>
+        <input type="password"
+               class="form-control login-form_password-input"
+               id="login-form_password-input"
+               name="pswd"
+               placeholder="Пароль"
+               [(ngModel)]="pswd"
+        >
+      </div>
+
+      <button type="button" class="btn btn-primary" (click)="login()">Уваход</button>
+
+    </form>
+</div>
