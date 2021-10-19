@@ -1,16 +1,33 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {API_BASE_URL} from "../app/app.module";
+import {NetworkService} from '../services/network.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http:HttpClient) { }
+  // tslint:disable-next-line:ban-types
 
-  login(){
-    console.log('Test login');
+  constructor( private network: NetworkService) {}
+/*
+{
+  user_id: 'admin',
+  password: '11111111'
+}
+*/
+
+  // tslint:disable-next-line:typedef
+  login(authInfo){
+      this.network.sendPost('login', authInfo)
+      .subscribe(
+      (data) => {
+        console.log(data);
+      },
+        (data) => {
+          console.log(data);
+        },
+     );
+
   }
 
 }

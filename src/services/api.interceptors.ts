@@ -10,9 +10,9 @@ export class ApiInterceptors implements HttpInterceptor{
       let request = req.clone();
       request.params.append('Accept','application/json');
 
-      console.log(req);
+      /*console.log(req);
       console.log(next);
-
+*/
       return next.handle(request);
     }
 }

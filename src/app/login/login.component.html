@@ -6,7 +6,9 @@
         <input type="text"
                class="form-control login-form_login-input"
                id="login-form_login-input"
+               name="userId"
                placeholder="Увядзіце імя карыстальніка"
+               [(ngModel)]="userId"
         >
       </div>
 
@@ -15,7 +17,9 @@
         <input type="password"
                class="form-control login-form_password-input"
                id="login-form_password-input"
+               name="pswd"
                placeholder="Пароль"
+               [(ngModel)]="pswd"
         >
       </div>
 

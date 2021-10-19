@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { LoginComponent } from './login/login.component';
-import {ApiInterceptors} from "../services/api.interceptors";
+import {FormsModule} from '@angular/forms';
 
-export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
+
+import { LoginComponent } from './login/login.component';
+import {ApiInterceptors} from '../services/api.interceptors';
+
 
 @NgModule({
   declarations: [
@@ -20,10 +22,10 @@ export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
     AppRoutingModule,
     NgbModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
-    {provide : API_BASE_URL, useValue: 'http://127.0.0.1/api/'},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptors,
