@@ -1,5 +1,7 @@
 import { AuthService } from '../../services/auth.service';
 import {Component, Injectable, OnInit} from '@angular/core';
+import { SessionStorage, SessionStorageService} from 'ngx-webstorage';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,11 @@ export class LoginComponent implements OnInit {
   public userId = '';
   public pswd = '';
 
-  constructor(private auth: AuthService) {
+  constructor(
+    private auth: AuthService,
+    private SessionSt: SessionStorageService,
+    private router: Router
+  ) {
   }
 
   login(){
@@ -21,7 +27,15 @@ export class LoginComponent implements OnInit {
       password: this.pswd
     };
 
-    this.auth.login(authInfo);
+    this.auth.login(authInfo).subscribe(
+      (data) => {
+        this.SessionSt.store('token', data);
+        this.router.navigate(['']);
+      },
+      (data) => {
+        console.log(data);
+      },
+    );
   }
 
   ngOnInit(): void {

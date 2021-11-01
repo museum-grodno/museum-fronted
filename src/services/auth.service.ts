@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {NetworkService} from '../services/network.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,16 +19,11 @@ export class AuthService {
 
   // tslint:disable-next-line:typedef
   login(authInfo){
-      this.network.sendPost('login', authInfo)
-      .subscribe(
-      (data) => {
-        console.log(data);
-      },
-        (data) => {
-          console.log(data);
-        },
-     );
+     return this.network.sendPost('login', authInfo);
+  }
 
+  validate(){
+    return this.network.sendPost('validate',null);
   }
 
 }

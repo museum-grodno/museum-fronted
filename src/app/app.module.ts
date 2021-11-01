@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+
 
 
 import { LoginComponent } from './login/login.component';
 import {ApiInterceptors} from '../services/api.interceptors';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,14 @@ import {ApiInterceptors} from '../services/api.interceptors';
     NgbModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxWebstorageModule.forRoot(
+      {
+        prefix: 'museum',
+        separator: '.',
+        caseSensitive: true
+      }
+    )
   ],
   providers: [
     {
@@ -32,6 +43,9 @@ import {ApiInterceptors} from '../services/api.interceptors';
       multi : true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    DashboardComponent
+  ]
 })
 export class AppModule { }
