@@ -2,14 +2,25 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+@import "./styles/fontawesome/scss/fontawesome";
+@import "./styles/fontawesome/scss/brands";
+@import "./styles/fontawesome/scss/solid";
+@import "./styles/fontawesome/scss/regular";
+@import "./styles/bootstrap-icons/bootstrap-icons";
 
 
 
 /*  Main options  */
 
 body{
-  background-color: #030510;
+  background-color: #343a40;
+  font: 12px/24px Arial, Helvetica, sans-serif;
   font-size: large;
+  padding: 15px;
+
+  .container{
+    max-width: 100%;
+  }
 }
 
 
