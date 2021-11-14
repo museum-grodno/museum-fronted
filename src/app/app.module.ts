@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {NgxWebstorageModule} from 'ngx-webstorage';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 
@@ -28,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    TranslateModule.forRoot(),
     NgxWebstorageModule.forRoot(
       {
         prefix: 'museum',
@@ -45,7 +47,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   bootstrap: [AppComponent],
   exports: [
-    DashboardComponent
+    DashboardComponent,
+    TranslateModule
   ]
 })
 export class AppModule { }
