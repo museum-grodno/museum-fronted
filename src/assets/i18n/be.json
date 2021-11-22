@@ -1,6 +1,25 @@
 {
   "COMMON": {
-    "HEADER": "Пример использования библиотеки Ngx Translate"
+    "HEADER": "Пример использования библиотеки Ngx Translate",
+    "USERNAME":{
+      "CAPTION": "Імя карыстальніка",
+      "DESCRIPTION" : "Увядзіце імя карыстальніка"
+    },
+
+    "PASSWORD": {
+      "CAPTION":"Пароль",
+      "DESCRIPTION" : "Пароль"
+    },
+
+    "LANG": {
+      "CAPTION":"Мова",
+      "DESCRIPTION" : "Мова"
+    },
+
+    "LOGIN": {
+      "CAPTION":"Уваход",
+      "DESCRIPTION" : "Уваход"
+    }
   },
   "LANGUAGES": {
     "EN": "Английский",
