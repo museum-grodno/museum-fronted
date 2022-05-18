@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { DictionaresComponent } from './dictionares/dictionares.component';
 
 // AoT requires an exported function for factories
 // tslint:disable-next-line:typedef
@@ -26,6 +27,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    DictionaresComponent,
   ],
   imports: [
     BrowserModule,

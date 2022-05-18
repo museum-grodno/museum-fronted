@@ -19,4 +19,12 @@ export class NetworkService {
         body
       );
   }
+
+  // tslint:disable-next-line:typedef
+  sendPut(endPoint: string, body: any ){
+    return this.http.put(
+      this.baseUrl + endPoint,
+      body
+    );
+  }
 }
