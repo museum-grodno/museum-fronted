@@ -1,6 +1,6 @@
 import { NgModule, InjectionToken } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -22,45 +22,37 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    DashboardComponent,
-    DictionaresComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    FontAwesomeModule,
-    HttpClientModule,
-    FormsModule,
-    NgxWebstorageModule.forRoot(
-      {
-        prefix: 'museum',
-        separator: '.',
-        caseSensitive: true
-      }
-    ),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptors,
-      multi : true
-    }
-  ],
-  bootstrap: [AppComponent],
-  exports: [
-    DashboardComponent
-  ]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        LoginComponent,
+        DashboardComponent,
+        DictionaresComponent,
+    ],
+    bootstrap: [AppComponent],
+    exports: [
+        DashboardComponent
+    ], imports: [BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        FontAwesomeModule,
+        FormsModule,
+        NgxWebstorageModule.forRoot({
+            prefix: 'museum',
+            separator: '.',
+            caseSensitive: true
+        }),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })], providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ApiInterceptors,
+            multi: true
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
