@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     this.translate = translateService;
   }
 
+  // tslint:disable-next-line:typedef
   login(){
 
     const authInfo = {

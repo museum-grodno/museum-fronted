@@ -2,11 +2,14 @@ import { NgModule, InjectionToken } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
-import {NgxWebstorageModule} from 'ngx-webstorage';
+import {provideNgxWebstorage, withNgxWebstorageConfig, withLocalStorage, withSessionStorage} from 'ngx-webstorage';
+
+
 
 import { LoginComponent } from './login/login.component';
 import {ApiInterceptors} from '../services/api.interceptors';
@@ -26,7 +29,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         AppComponent,
         LoginComponent,
         DashboardComponent,
-        DictionaresComponent,
+        DictionaresComponent
     ],
     bootstrap: [AppComponent],
     exports: [
@@ -34,13 +37,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ], imports: [BrowserModule,
         AppRoutingModule,
         NgbModule,
+        RouterOutlet,
         FontAwesomeModule,
         FormsModule,
-        NgxWebstorageModule.forRoot({
-            prefix: 'museum',
-            separator: '.',
-            caseSensitive: true
-        }),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -53,6 +52,16 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
             useClass: ApiInterceptors,
             multi: true
         },
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+      provideNgxWebstorage(withNgxWebstorageConfig({ separator: ':', caseSensitive: true }),
+       withLocalStorage(), withSessionStorage())
+       /* provideNgxWebstorage(withNgxWebstorageConfig(
+          {
+                  prefix: 'museum',
+                  separator: '.',
+                  caseSensitive: true
+                }
+        ))*/
+
     ] })
 export class AppModule { }
