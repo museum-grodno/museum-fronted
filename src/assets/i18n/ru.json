@@ -21,6 +21,10 @@
       "DESCRIPTION" : "Вход"
     }
   },
+  "DASHBOARD":{
+    "EXCURSIONS":"Экскурсии",
+    "DICTIONARES":"Словари"
+  },
   "LANGUAGES": {
     "EN": "Английский",
     "RU": "Русский",

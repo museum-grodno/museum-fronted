@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
     selector: 'app-dashboard',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
     standalone: false
 })
 export class DashboardComponent implements OnInit {
+  public translate;
 
-  constructor() { }
+  constructor(
+    private translateService: TranslateService
+  ) {
+    this.translate = translateService;
+  }
 
   ngOnInit(): void {
   }

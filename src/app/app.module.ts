@@ -8,16 +8,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {provideNgxWebstorage, withNgxWebstorageConfig, withLocalStorage, withSessionStorage} from 'ngx-webstorage';
-
-
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 import { LoginComponent } from './login/login.component';
 import {ApiInterceptors} from '../services/api.interceptors';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { DictionaresComponent } from './dictionares/dictionares.component';
+import {BookingExcursionsComponent} from './booking-excursions/booking-excursions.component';
+
 
 // AoT requires an exported function for factories
 // tslint:disable-next-line:typedef
@@ -29,17 +29,20 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         AppComponent,
         LoginComponent,
         DashboardComponent,
-        DictionaresComponent
+        DictionaresComponent,
+        BookingExcursionsComponent
     ],
     bootstrap: [AppComponent],
     exports: [
-        DashboardComponent
+        DashboardComponent,
+        BookingExcursionsComponent
     ], imports: [BrowserModule,
         AppRoutingModule,
         NgbModule,
         RouterOutlet,
         FontAwesomeModule,
         FormsModule,
+        FullCalendarModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -53,8 +56,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
             multi: true
         },
         provideHttpClient(withInterceptorsFromDi()),
-      provideNgxWebstorage(withNgxWebstorageConfig({ separator: ':', caseSensitive: true }),
-       withLocalStorage(), withSessionStorage())
+        provideNgxWebstorage(withNgxWebstorageConfig({ separator: ':', caseSensitive: true }),
+         withLocalStorage(), withSessionStorage())
        /* provideNgxWebstorage(withNgxWebstorageConfig(
           {
                   prefix: 'museum',

@@ -21,6 +21,10 @@
       "DESCRIPTION" : "Уваход"
     }
   },
+  "DASHBOARD":{
+    "EXCURSIONS":"Экскурсіі",
+    "DICTIONARES":"Слоўнікі"
+  },
   "LANGUAGES": {
     "EN": "Английский",
     "RU": "Русский",

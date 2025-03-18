@@ -4,10 +4,12 @@ import { Routes, RouterOutlet, RouterModule } from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {DictionaresComponent} from './dictionares/dictionares.component';
+import {BookingExcursionsComponent} from './booking-excursions/booking-excursions.component';
 import {AuthGuard} from '../services/guard/auth.guard';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
+  {path: 'booking-excursions', component: BookingExcursionsComponent},
   {path: '', component: DashboardComponent, canActivate: [ AuthGuard ]},
   {path: 'dictionares', component: DictionaresComponent, canActivate: [ AuthGuard ]}
 ];

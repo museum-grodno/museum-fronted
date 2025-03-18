@@ -22,6 +22,10 @@
     }
 
   },
+  "DASHBOARD":{
+    "EXCURSIONS":"Excursions",
+    "DICTIONARES":"Dictionares"
+  },
   "LANGUAGES": {
     "EN": "English",
     "RU": "Russian",
