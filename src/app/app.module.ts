@@ -11,6 +11,8 @@ import {provideNgxWebstorage, withNgxWebstorageConfig, withLocalStorage, withSes
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 import { LoginComponent } from './login/login.component';
 import {ApiInterceptors} from '../services/api.interceptors';
@@ -42,6 +44,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         RouterOutlet,
         FontAwesomeModule,
         FormsModule,
+        ModalModule,
         FullCalendarModule,
         TranslateModule.forRoot({
             loader: {

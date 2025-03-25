@@ -9,13 +9,11 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class DashboardComponent implements OnInit {
   public translate;
-
   constructor(
     private translateService: TranslateService
   ) {
     this.translate = translateService;
   }
-
   ngOnInit(): void {
   }
 

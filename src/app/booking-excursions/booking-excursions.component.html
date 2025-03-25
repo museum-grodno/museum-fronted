@@ -1,6 +1,37 @@
 <div class="booking-excursions  row">
+
+
+
   <div class="col-md-2 col-sm-2 col-lg-2">
     <h1>Панель управления</h1>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#viewTemplate">
+      Launch demo modal
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="viewTemplate" tabindex="-1" aria-
+         labelledby="viewTemplateLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-danger" id="viewTemplateLabel">Hey
+              Bootstrap 5!!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-danger">
+            Therichpost.com
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-bs-
+                    dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <div class="col-md-10 col-sm-10 col-lg-10">
     <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions()'>
@@ -10,4 +41,5 @@
       </ng-template>
     </full-calendar>
   </div>
+
 </div>

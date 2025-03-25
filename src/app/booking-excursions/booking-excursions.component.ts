@@ -10,15 +10,15 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-import {by} from 'protractor';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-booking-excursions',
   templateUrl: './booking-excursions.component.html',
   styleUrl: './booking-excursions.component.scss',
   standalone: false
-
 })
 export class BookingExcursionsComponent implements OnInit {
+  modalRef?: BsModalRef;
   calendarVisible = signal(true);
   calendarOptions = signal<CalendarOptions>({
     plugins: [
@@ -52,7 +52,9 @@ export class BookingExcursionsComponent implements OnInit {
   currentEvents = signal<EventApi[]>([]);
   // tslint:disable-next-line:typedef
   handleDateSelect(selectInfo: DateSelectArg){
-    const title = prompt('Please enter a new title for your event');
+    //this.modalRef = this.modalService.show('viewTemplate');
+
+   /* const title = prompt('Please enter a new title for your event');
     const calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect(); // clear date selection
@@ -65,9 +67,9 @@ export class BookingExcursionsComponent implements OnInit {
         end: selectInfo.endStr,
         allDay: selectInfo.allDay
       });
-    }
+    }*/
   }
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(private changeDetector: ChangeDetectorRef, private modalService: BsModalService) {
      }
   ngOnInit(): void {
 

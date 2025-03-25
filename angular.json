@@ -33,9 +33,12 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/scss/bootstrap.scss",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ],
             "extractLicenses": false,
             "sourceMap": true,
             "optimization": false,
@@ -74,7 +77,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "museum-fronted:build"
+            "buildTarget": "museum-fronted:build",
+            "ssl": true
           },
           "configurations": {
             "production": {
