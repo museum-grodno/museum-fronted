@@ -1,5 +1,5 @@
 import { AuthService } from '../../services/auth.service';
-import {ChangeDetectorRef, Component, Injectable, OnInit, signal} from '@angular/core';
+import {ChangeDetectorRef, ViewChild, Component, Injectable, OnInit, TemplateRef,  signal} from '@angular/core';
 import { SessionStorage, SessionStorageService} from 'ngx-webstorage';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-booking-excursions',
   templateUrl: './booking-excursions.component.html',
@@ -18,31 +18,43 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   standalone: false
 })
 export class BookingExcursionsComponent implements OnInit {
+  @ViewChild(ModalDirective, { static: true }) modal?: ModalDirective;
+  screenWidth?: any;
+  screenHeight?: any;
   modalRef?: BsModalRef;
+  messages?: string[];
+  selectedInfo?: DateSelectArg;
   calendarVisible = signal(true);
   calendarOptions = signal<CalendarOptions>({
+    aspectRatio: 1,
+    dayMaxEvents: true,
+    editable: true,
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+    },
+    height: '100vh',
+    hiddenDays: [1],
+    initialView: 'dayGridMonth',
+    locale: ruLocales,
     plugins: [
       interactionPlugin,
       dayGridPlugin,
       timeGridPlugin,
       listPlugin,
     ],
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-    },
-    initialView: 'dayGridMonth',
-    locale: ruLocales,
     // initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
-    weekends: true,
-    editable: true,
-    selectable: true,
-    selectMirror: true,
-    dayMaxEvents: true,
     select: this.handleDateSelect.bind(this),
-   // eventClick: this.handleEventClick.bind(this),
-   /// eventsSet: this.handleEvents.bind(this)
+    selectMirror: true,
+    selectable: true,
+    slotDuration: '01:00:00',
+    slotMaxTime: '18:00:00',
+    slotMinTime: '10:00:00',
+    themeSystem: 'bootstrap5',
+    weekends: true,
+    // eventClick: this.handleEventClick.bind(this),
+    /// eventsSet: this.handleEvents.bind(this)
     /* you can update a remote database when these fire:
     eventAdd:
     eventChange:
@@ -51,8 +63,12 @@ export class BookingExcursionsComponent implements OnInit {
   });
   currentEvents = signal<EventApi[]>([]);
   // tslint:disable-next-line:typedef
-  handleDateSelect(selectInfo: DateSelectArg){
-    //this.modalRef = this.modalService.show('viewTemplate');
+  handleDateSelect(selectInfo: DateSelectArg ){
+    this.selectedInfo = selectInfo;
+    this.showModal();
+    /**
+     * this.modalRef = this.modalService.show(viewUserTemplate);
+     */
 
    /* const title = prompt('Please enter a new title for your event');
     const calendarApi = selectInfo.view.calendar;
@@ -71,7 +87,20 @@ export class BookingExcursionsComponent implements OnInit {
   }
   constructor(private changeDetector: ChangeDetectorRef, private modalService: BsModalService) {
      }
+  // tslint:disable-next-line:typedef
+  showModal() {
+    this.messages = [];
+    this.modal?.show();
+  }
+  handler = (type: string, $event: ModalDirective) => {
+    this.messages?.push(
+      `event ${type} is fired${$event.dismissReason
+        ? ', dismissed by ' + $event.dismissReason
+        : ''}`
+    );
+  }
   ngOnInit(): void {
-
+      this.screenWidth = window.innerWidth;
+      this.screenHeight = window.innerHeight;
   }
 }

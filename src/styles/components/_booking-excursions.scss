@@ -1,24 +1,21 @@
 .booking-excursions
 {
+  max-height: 100vh;
   .calendar-panel {
-    background-color: #eeeeee;
-    color: #000000;
+    color: #eeeeee;
     padding-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 20px;
-
-
     .fc{
       .fc-view-harness{
         .fc-view{
           .fc-scrollgrid{
-            color: #000000;
-            border: 2px solid #000000;
+            color: #eeeeee;
+            border: 2px solid black;
           }
         }
       }
     }
   }
 }
-

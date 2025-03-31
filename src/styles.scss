@@ -1,13 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+
+
 @import "./styles/fontawesome/scss/fontawesome";
 @import "./styles/fontawesome/scss/brands";
 @import "./styles/fontawesome/scss/solid";
 @import "./styles/fontawesome/scss/regular";
 @import "./styles/bootstrap-icons/bootstrap-icons";
-
+@import "./styles/components/booking-excursions";
+@import 'bootstrap/scss/bootstrap';
 
 
 /*  Main options  */
@@ -20,6 +22,13 @@ body{
 
   .container{
     max-width: 100%;
+  }
+
+  .fc .fc-col-header-cell-cushion,
+  .fc .fc-daygrid-day-number,
+  .fc .fc-timegrid-slot-label-cushion
+  {
+    color: #000000;
   }
 }
 

@@ -11,7 +11,7 @@ import {provideNgxWebstorage, withNgxWebstorageConfig, withLocalStorage, withSes
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 
 import { LoginComponent } from './login/login.component';
@@ -58,9 +58,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
             useClass: ApiInterceptors,
             multi: true
         },
+        BsModalService,
         provideHttpClient(withInterceptorsFromDi()),
         provideNgxWebstorage(withNgxWebstorageConfig({ separator: ':', caseSensitive: true }),
-         withLocalStorage(), withSessionStorage())
+        withLocalStorage(), withSessionStorage())
        /* provideNgxWebstorage(withNgxWebstorageConfig(
           {
                   prefix: 'museum',

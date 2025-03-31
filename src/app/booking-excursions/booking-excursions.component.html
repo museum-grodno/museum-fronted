@@ -1,39 +1,76 @@
 <div class="booking-excursions  row">
-
-
-
   <div class="col-md-2 col-sm-2 col-lg-2">
     <h1>Панель управления</h1>
+   <!-- <button type="button" class="btn btn-primary" (click)="showModal()">Open a modal</button>
+    <br><br>-->
+    <pre class="card card-block card-header" *ngFor="let message of messages">{{message}}</pre>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-            data-bs-target="#viewTemplate">
-      Launch demo modal
-    </button>
-    <!-- Modal -->
-    <div class="modal fade" id="viewTemplate" tabindex="-1" aria-
-         labelledby="viewTemplateLabel" aria-hidden="true">
-      <div class="modal-dialog">
+    <div class="modal fade" bsModal #modal="bs-modal" 
+         tabindex="-1" role="dialog" aria-labelledby="dialog-events-name"
+         (onShow)="handler('onShow', $event)"
+         (onShown)="handler('onShown', $event)"
+         (onHide)="handler('onHide', $event)"
+         (onHidden)="handler('onHidden', $event)">
+      <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title text-danger" id="viewTemplateLabel">Hey
-              Bootstrap 5!!</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+            <h4 id="dialog-events-name" class="modal-title pull-left">Modal</h4>
+            <button type="button" class="close pull-right btn-close" aria-label="Close" (click)="modal.hide()">
+              <span aria-hidden="true" class="visually-hidden">&times;</span>
+            </button>
           </div>
-          <div class="modal-body text-danger">
-            Therichpost.com
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-warning" data-bs-
-                    dismiss="modal">Close</button>
+          <div class="modal-body">
+            <form>
+              <select class="form-select mb-3" aria-label="Default select example">
+                <option selected>Выберите объект</option>
+                <option value="1">Старый замок</option>
+                <option value="2">Новый Замок</option>
+              </select>
+              <div class="mb-3">
+                <label for="customerGroupCount" class="form-label">Укажите количество</label>
+                <input type="text" class="form-control" id="customerGroupCount">
+              </div>
+              <div class="mb-3">
+                <label for="customerChildren" class="form-label">Дети</label>
+                <input type="checkbox" class="form-check-input" id="customerChildren">
+              </div>
+              <div class="mb-3">
+                <label for="customerPensioner" class="form-label">Пенсионеры</label>
+                <input type="checkbox" class="form-check-input" id="customerPensioner">
+              </div>
+              <div class="mb-3">
+                <label for="customerName" class="form-label">Укажите название организации</label>
+                <input type="text" class="form-control" id="customerName">
+              </div>
+              <div class="mb-3">
+                <label for="customerAdress" class="form-label">Укажите юридический адрес</label>
+                <input type="text" class="form-control" id="customerAdress">
+              </div>
+              <div class="mb-3">
+                <label for="customerUNP" class="form-label">Укажите УНП</label>
+                <input type="text" class="form-control" id="customerUNP">
+              </div>
+              <div class="mb-3">
+                <label for="customerCash" class="form-label">Укажите рачетный счёт</label>
+                <input type="text" class="form-control" id="customerCash">
+              </div>
+              <div class="mb-3">
+                <label for="customerContacts" class="form-label">Укажите контакты</label>
+                <input type="text" class="form-control" id="customerContacts">
+              </div>
+              <div class="mb-3">
+                <label for="customerInputEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="customerInputEmail">
+              </div>
+              <button type="submit" class="btn btn-primary">Сохранить</button>
+              <button type="submit" class="btn btn-primary">Отмена</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-  <div class="col-md-10 col-sm-10 col-lg-10">
+  <div class="calendar-panel col-md-10 col-sm-10 col-lg-10">
     <full-calendar *ngIf='calendarVisible()' [options]='calendarOptions()'>
       <ng-template #eventContent let-arg>
         <b>{{ arg.timeText }}</b>
@@ -41,5 +78,9 @@
       </ng-template>
     </full-calendar>
   </div>
+
+  <!-- modal section -->
+
+
 
 </div>
