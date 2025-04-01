@@ -1,42 +1,77 @@
 <div class="booking-excursions  row">
-  <div class="col-md-2 col-sm-2 col-lg-2">
-    <h1>Панель управления</h1>
-   <!-- <button type="button" class="btn btn-primary" (click)="showModal()">Open a modal</button>
-    <br><br>-->
-    <pre class="card card-block card-header" *ngFor="let message of messages">{{message}}</pre>
-
-    <div class="modal fade" bsModal #modal="bs-modal" 
+  <div class="col-md-2 col-sm-2 col-lg-2" >
+    <h2 style="color: #eeeeee">
+    <p>Онлайн бронирование экскурсии только для туристических фирм!</p>
+    <p>Выбранное время экскурсии не является окончательным. Дождитесь  подтверждения бронирования.</p>
+    <p>Максимальное количество человек на 1 час – 45 человек.</p>
+    <p>Заявка на оплату принимается за 5 дней до посещения. В ином случаи
+    ваша бронь аннулируется.</p>
+    <p>ПОНЕДЕЛЬНИК – ВЫХОДНОЙ</p> </h2>
+    <div class="modal fade" bsModal #modal="bs-modal"
          tabindex="-1" role="dialog" aria-labelledby="dialog-events-name"
          (onShow)="handler('onShow', $event)"
          (onShown)="handler('onShown', $event)"
          (onHide)="handler('onHide', $event)"
          (onHidden)="handler('onHidden', $event)">
-      <div class="modal-dialog modal-sm">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 id="dialog-events-name" class="modal-title pull-left">Modal</h4>
+            <h4 id="dialog-events-name" class="modal-title pull-left">Заказать экскурсию</h4>
             <button type="button" class="close pull-right btn-close" aria-label="Close" (click)="modal.hide()">
               <span aria-hidden="true" class="visually-hidden">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             <form>
+                <div class="mb-3">
+                  <label for="customerDate" class="form-label">Дата и время</label>
+                  <input type="text" class="form-control" id="customerDate" [formControl]="selectedDate">
+                <div class="mb-3">
+                  <select class="form-select">
+                    <option selected>Выберите время</option>
+                    <option value="10:00:00">10:00 - 11:00</option>
+                    <option value="11:00:00">11:00 - 12:00</option>
+                    <option value="12:00:00">12:00 - 13:00</option>
+                    <option value="13:00:00">13:00 - 14:00</option>
+                    <option value="14:00:00">14:00 - 15:00</option>
+                    <option value="15:00:00">15:00 - 16:00</option>
+                    <option value="16:00:00">16:00 - 17:00</option>
+                    <option value="17:00:00">17:00 - 18:00</option>
+                  </select>
+                </div>
+              </div>
               <select class="form-select mb-3" aria-label="Default select example">
                 <option selected>Выберите объект</option>
                 <option value="1">Старый замок</option>
                 <option value="2">Новый Замок</option>
               </select>
               <div class="mb-3">
-                <label for="customerGroupCount" class="form-label">Укажите количество</label>
+                <label for="customerGroupCount" class="form-label">Укажите общее количество</label>
                 <input type="text" class="form-control" id="customerGroupCount">
               </div>
               <div class="mb-3">
-                <label for="customerChildren" class="form-label">Дети</label>
-                <input type="checkbox" class="form-check-input" id="customerChildren">
+                <label for="customerOld" class="form-label">Укажите количество взрослых</label>
+                <input type="text" class="form-control" id="customerOld">
               </div>
               <div class="mb-3">
-                <label for="customerPensioner" class="form-label">Пенсионеры</label>
-                <input type="checkbox" class="form-check-input" id="customerPensioner">
+                <label for="customerPensioner" class="form-label">Укажите количество пенсионеров</label>
+                <input type="text" class="form-control" id="customerPensioner">
+              </div>
+              <div class="mb-3">
+                <label for="customerStudent" class="form-label">Укажите количество студентов, учащихся</label>
+                <input type="text" class="form-control" id="customerStudent">
+              </div>
+              <div class="mb-3">
+                <label for="customerPupil" class="form-label">Укажите количество школьников (дети с 7 лет)</label>
+                <input type="text" class="form-control" id="customerPupil">
+              </div>
+              <div class="mb-3">
+                <label for="customerToddler" class="form-label">Укажите количество дошкольников (дети до 7 лет)</label>
+                <input type="text" class="form-control" id="customerToddler">
+              </div>
+              <div class="mb-3">
+                <label for="customerLgotniki" class="form-label">Укажите количествоk льготников</label>
+                <input type="text" class="form-control" id="customerLgotniki">
               </div>
               <div class="mb-3">
                 <label for="customerName" class="form-label">Укажите название организации</label>
@@ -59,11 +94,13 @@
                 <input type="text" class="form-control" id="customerContacts">
               </div>
               <div class="mb-3">
-                <label for="customerInputEmail" class="form-label">Email</label>
+                <label for="customerInputEmail" class="form-label">Укажите e-mail</label>
                 <input type="email" class="form-control" id="customerInputEmail">
               </div>
-              <button type="submit" class="btn btn-primary">Сохранить</button>
-              <button type="submit" class="btn btn-primary">Отмена</button>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="modal.hide()">Сохранить</button>
+                <button type="button" class="btn btn-secondary" (click)="modal.hide()">Отмена</button>
+              </div>
             </form>
           </div>
         </div>

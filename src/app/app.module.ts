@@ -6,7 +6,7 @@ import { RouterOutlet } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {provideNgxWebstorage, withNgxWebstorageConfig, withLocalStorage, withSessionStorage} from 'ngx-webstorage';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -39,20 +39,20 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         DashboardComponent,
         BookingExcursionsComponent
     ], imports: [BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        RouterOutlet,
-        FontAwesomeModule,
-        FormsModule,
-        ModalModule,
-        FullCalendarModule,
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        })], providers: [
+    AppRoutingModule,
+    NgbModule,
+    RouterOutlet,
+    FontAwesomeModule,
+    FormsModule,
+    ModalModule,
+    FullCalendarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }), ReactiveFormsModule], providers: [
         {
             provide: HTTP_INTERCEPTORS,
             useClass: ApiInterceptors,

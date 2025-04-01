@@ -1,5 +1,6 @@
 import { AuthService } from '../../services/auth.service';
 import {ChangeDetectorRef, ViewChild, Component, Injectable, OnInit, TemplateRef,  signal} from '@angular/core';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { SessionStorage, SessionStorageService} from 'ngx-webstorage';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
@@ -23,6 +24,7 @@ export class BookingExcursionsComponent implements OnInit {
   screenHeight?: any;
   modalRef?: BsModalRef;
   messages?: string[];
+  selectedDate: FormControl;
   selectedInfo?: DateSelectArg;
   calendarVisible = signal(true);
   calendarOptions = signal<CalendarOptions>({
@@ -32,7 +34,7 @@ export class BookingExcursionsComponent implements OnInit {
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      right: '' //'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     height: '100vh',
     hiddenDays: [1],
@@ -64,7 +66,8 @@ export class BookingExcursionsComponent implements OnInit {
   currentEvents = signal<EventApi[]>([]);
   // tslint:disable-next-line:typedef
   handleDateSelect(selectInfo: DateSelectArg ){
-    this.selectedInfo = selectInfo;
+    this.selectedDate.setValue(selectInfo.startStr);
+    console.log(this.selectedDate.value);
     this.showModal();
     /**
      * this.modalRef = this.modalService.show(viewUserTemplate);
@@ -93,13 +96,12 @@ export class BookingExcursionsComponent implements OnInit {
     this.modal?.show();
   }
   handler = (type: string, $event: ModalDirective) => {
-    this.messages?.push(
-      `event ${type} is fired${$event.dismissReason
-        ? ', dismissed by ' + $event.dismissReason
-        : ''}`
-    );
+    if ( type === 'onShow' ) {
+      console.log();
+    }
   }
   ngOnInit(): void {
+      this.selectedDate = new FormControl();
       this.screenWidth = window.innerWidth;
       this.screenHeight = window.innerHeight;
   }
